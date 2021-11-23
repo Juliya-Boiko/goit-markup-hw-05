@@ -74,6 +74,7 @@ p {
 }
 
 .nav-link {
+  position: relative;
   display: block;
   padding: 32px 0;
 
@@ -82,6 +83,20 @@ p {
   font-size: 14px;
   line-height: 1.1;
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.current::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 .nav-link:hover,
@@ -99,6 +114,9 @@ p {
   font-size: 14px;
   line-height: 1.1;
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact-icon {
@@ -238,9 +256,31 @@ p {
 }
 
 .work-item {
+  position: relative;
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.work-img {
+  display: block;
+}
+
+.work-descr {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  padding: 27px 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.14;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgba(47, 48, 58, 0.8);
+
+  color: var(--white-color);
 }
 
 .team-section {
@@ -303,6 +343,9 @@ p {
   padding: 12px 12px;
 
   fill: var(--logo-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-item .social-link:hover,
@@ -332,6 +375,9 @@ p {
   border: 1px solid;
   border-color: #afb1b8;
   border-radius: 4px;
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .client-box:hover,
@@ -392,11 +438,57 @@ p {
 .footer-section .social-link {
   background-color: rgba(255, 255, 255, 0.1);
   fill: var(--white-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-section .social-link:hover,
 .footer-section .social-link:focus {
   background-color: var(--accent-color);
+}
+
+/* Модальное окно */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.8);
+
+  transition: opacity 300ms ease-in-out;
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 528px;
+  min-height: 581px;
+  padding: 8px 8px 543px 490px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+  transform: translate(-50%, -50%);
+
+  background-color: var(--white-color);
+}
+
+.close-border {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--white-color);
 }
 
 /* Портфолио */
@@ -428,6 +520,10 @@ p {
   font-size: 16px;
   line-height: 1.6;
   cursor: pointer;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .secondary-button:hover,
@@ -447,6 +543,8 @@ p {
   margin: 0 30px 30px 0;
 
   border-radius: 0px 0px 4px 4px;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover,
@@ -482,8 +580,38 @@ p {
   line-height: 1.9;
 }
 
+.image-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
 .card-image {
   display: block;
+}
+
+.card-image-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.56;
+
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--white-color);
+
+  /* opacity: 0; */
+
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .card-image-text {
+  transform: translateY(0);
 }
 
 .card-border {
