@@ -369,11 +369,12 @@ p {
 
 .client-box {
   display: block;
-
-  fill: var(--logo-color);
+  padding: 16px 32px;
   border: 1px solid;
   border-color: #afb1b8;
   border-radius: 4px;
+
+  fill: var(--logo-color);
 
   transition: fill var(--transition-prop), border-color var(--transition-prop);
 }
@@ -482,7 +483,7 @@ p {
 }
 
 .close-border {
-  padding: 0;
+  display: flex;
   width: 30px;
   height: 30px;
   border-radius: 50%;
